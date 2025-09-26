@@ -1,0 +1,359 @@
+{
+  "info": {
+    "name": "Product & Warehouse Management - New Folders Only",
+    "description": "Just the new Product and Warehouse Management folders to import into existing collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5152",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYW1laWRlbnRpZmllciI6IjkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU3lzdGVtIEFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiYWRtaW5Ac3lzdGVtLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJBZG1pbiIsIlVzZXIiXSwiZXhwIjoxNzU4OTA5MjM4LCJpc3MiOiJBdXRoUkJBQ0FwaSIsImF1ZCI6IkF1dGhSQkFDQXBpVXNlcnMifQ.IufxLK4_ipNu9NUT-4-nuHJhlzEbRHkZnd1wd-H2JV8",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "📦 Product Management",
+      "description": "Product CRUD operations and inventory management",
+      "item": [
+        {
+          "name": "Get All Active Products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/product",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "product"]
+            },
+            "description": "Retrieve all active products with inventory information"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Products (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/product/all",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "product", "all"]
+            },
+            "description": "Retrieve all products including inactive ones (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/product/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "product", "1"]
+            },
+            "description": "Get detailed information about a specific product"
+          },
+          "response": []
+        },
+        {
+          "name": "Create New Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Coca Cola 330ml\",\n  \"description\": \"Classic Coca Cola soft drink in 330ml can\",\n  \"price\": 5.50,\n  \"unit\": \"piece\",\n  \"sku\": \"COCA-COLA-330ML\",\n  \"brand\": \"Coca Cola\",\n  \"weight\": 0.33,\n  \"dimensions\": \"6.2x12.2 cm\",\n  \"categoryId\": 1,\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/product",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "product"]
+            },
+            "description": "Create a new product (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Coca Cola 330ml - Updated\",\n  \"description\": \"Updated description\",\n  \"price\": 6.00,\n  \"unit\": \"piece\",\n  \"sku\": \"COCA-COLA-330ML-V2\",\n  \"brand\": \"Coca Cola\",\n  \"weight\": 0.33,\n  \"dimensions\": \"6.2x12.2 cm\",\n  \"categoryId\": 1,\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/product/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "product", "1"]
+            },
+            "description": "Update an existing product (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/product/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "product", "1"]
+            },
+            "description": "Soft delete a product (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product Inventory",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 100,\n  \"unit\": \"piece\",\n  \"minimumStockLevel\": 10,\n  \"maximumStockLevel\": 500\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/product/1/inventory/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "product", "1", "inventory", "1"]
+            },
+            "description": "Update product inventory in a specific warehouse (Admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🏪 Warehouse Management",
+      "description": "Warehouse CRUD operations and inventory tracking",
+      "item": [
+        {
+          "name": "Get All Active Warehouses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/warehouse",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "warehouse"]
+            },
+            "description": "Retrieve all active warehouses with inventory statistics"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Warehouses (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/warehouse/all",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "warehouse", "all"]
+            },
+            "description": "Retrieve all warehouses including inactive ones (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Warehouse by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/warehouse/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "warehouse", "1"]
+            },
+            "description": "Get detailed information about a specific warehouse"
+          },
+          "response": []
+        },
+        {
+          "name": "Create New Warehouse",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Store Branch\",\n  \"address\": \"123 New Street\",\n  \"city\": \"Cairo\",\n  \"phoneNumber\": \"+20-123-456-7893\",\n  \"managerName\": \"New Manager\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/warehouse",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "warehouse"]
+            },
+            "description": "Create a new warehouse (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Warehouse",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Warehouse Name\",\n  \"address\": \"456 Updated Street\",\n  \"city\": \"Alexandria\",\n  \"phoneNumber\": \"+20-123-456-7894\",\n  \"managerName\": \"Updated Manager\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/warehouse/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "warehouse", "1"]
+            },
+            "description": "Update an existing warehouse (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Warehouse",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/warehouse/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "warehouse", "1"]
+            },
+            "description": "Soft delete a warehouse (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Warehouse Inventory",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/warehouse/1/inventory",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "warehouse", "1", "inventory"]
+            },
+            "description": "Get detailed inventory for a specific warehouse"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
